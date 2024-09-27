@@ -52,10 +52,11 @@ setInterval(() => {
     if (currentLength !== previousLength) {
         console.log('SVG elements length changed:', currentLength);
         clickNextButton();
+        previousLength = currentLength;
+        setTimeout(function(){ console.log("Waiting to Click Play") }, 2000);
         const playButton = document.querySelector('.w-vulcan-v2-button.w-css-reset.w-css-reset-tree.w-css-reset-button-important');
         playButton.click();
         console.log("Clicked Play!!!");
-        previousLength = currentLength;
     }
 }, 1000);
 
