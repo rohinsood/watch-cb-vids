@@ -45,17 +45,16 @@ let previousLength = checkSvgLength();
     }, true);
 })();
 
-const playButton = document.getElementsByClassName('w-big-play-button w-css-reset-button-important w-vulcan-v2-button')[0];
-
 setInterval(() => {
     const currentLength = checkSvgLength();
-    console.log("current length" + currentLength);
+    console.log("Current Length=" + currentLength + " | Previous Length="+previousLength);
 
     if (currentLength !== previousLength) {
         console.log('SVG elements length changed:', currentLength);
         clickNextButton();
+        const playButton = document.querySelector('.w-vulcan-v2-button.w-css-reset.w-css-reset-tree.w-css-reset-button-important');
         playButton.click();
-        console.log("prev length" + previousLength);
+        console.log("Clicked Play!!!");
         previousLength = currentLength;
     }
 }, 1000);
