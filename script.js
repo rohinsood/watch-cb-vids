@@ -56,9 +56,8 @@ setInterval(() => {
         previousLength = currentLength;
         setTimeout(function(){ console.log("Waiting to Click Play") }, 2000);
 
-        const xpath = "/html/body/div[1]/div/div[4]/div[2]/main/div[4]/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[4]/div/div[3]/div/div/div/button";
-        const playButton = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        playButton.click();
+        // click play button
+        document.querySelector("div.w-vulcan--background.w-css-reset").click()
         
         console.log("Clicked Play!!!");
     }
