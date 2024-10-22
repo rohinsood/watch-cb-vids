@@ -45,7 +45,7 @@ let previousLength = checkSvgLength();
     }, true);
 })();
 
-setInterval(() => {
+var checkAndMove = setInterval(() => {
     const currentLength = checkSvgLength();
     console.log("Current Length=" + currentLength + " | Previous Length="+previousLength);
 
@@ -54,12 +54,19 @@ setInterval(() => {
         clickNextButton();
         console.log('Clicked Next!');
         previousLength = currentLength;
-        setTimeout(function(){ console.log("Waiting to Click Play") }, 2000);
+        setTimeout(function(){ console.log("Waiting to Click Play") }, 4000);
 
         // click play button
-        document.querySelector("div.w-vulcan--background.w-css-reset").click()
         
-        console.log("Clicked Play!!!");
+        let playButton = document.querySelector("div.w-vulcan--background.w-css-reset")
+        if (playButton) {
+            playButton.click()
+            console.log("Clicked Play!!!");
+        } else {
+            document.querySelector("div.w-vulcan--background.w-css-reset").click()
+            console.log('document.querySelector("div.w-vulcan--background.w-css-reset") is null, trying again');
+        }   
+                
     }
 }, 1000);
 
