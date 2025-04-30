@@ -50,6 +50,8 @@ clear();
   console.log('Always Active Window Extension Simulated');
 })();
 
+playVideo();
+
 function clickNextButton() {
     const buttons = Array.from(document.querySelectorAll('button[role="tab"]'));
     const selectedButton = buttons.find(button => button.getAttribute('aria-selected') === 'true');
