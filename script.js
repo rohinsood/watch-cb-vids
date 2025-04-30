@@ -1,5 +1,55 @@
 clear();
 
+(function() {
+  const originalVisibilityState = Object.getOwnPropertyDescriptor(document, 'visibilityState');
+  const originalVisibilityChange = document.visibilitychange;
+
+  Object.defineProperty(document, 'hidden', {
+    get: function() {
+      return false; // Always return false, indicating the page is not hidden
+    }
+  });
+
+  Object.defineProperty(document, 'visibilityState', {
+    get: function() {
+      return 'visible'; // Always return 'visible', simulating the page is in focus
+    }
+  });
+
+  document.addEventListener('visibilitychange', function(event) {
+    event.stopImmediatePropagation();
+  });
+
+  const originalPageVisibility = {
+    hidden: document.hidden,
+    visibilityState: document.visibilityState,
+  };
+
+  const visibilityHandler = function() {
+    document.hidden = false;
+    document.visibilityState = 'visible';
+  };
+
+  setInterval(visibilityHandler, 500);
+
+  window.addEventListener('blur', function(event) {
+    event.preventDefault(); // Prevent the blur event
+    event.stopImmediatePropagation();
+    visibilityHandler(); // Ensure the page remains in the active state
+  });
+
+  window.addEventListener('focus', function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  });
+
+  document.addEventListener('visibilitychange', function(event) {
+    visibilityHandler();
+  });
+
+  console.log('Always Active Window Extension Simulated');
+})();
+
 function clickNextButton() {
     const buttons = Array.from(document.querySelectorAll('button[role="tab"]'));
     const selectedButton = buttons.find(button => button.getAttribute('aria-selected') === 'true');
