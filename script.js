@@ -97,7 +97,6 @@ let previousLength = checkSvgLength();
 
 var checkAndMove = setInterval(() => {
     const currentLength = checkSvgLength();
-    console.log("Current Length=" + currentLength + " | Previous Length="+previousLength);
 
     if (currentLength !== previousLength) {
         console.log('SVG elements length changed:', currentLength);
